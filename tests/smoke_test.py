@@ -215,7 +215,7 @@ def main() -> int:
     if FAILURES:
         print(f"PRZEGRANE TESTY ({len(FAILURES)}): {FAILURES}")
         return 1
-    print("WSZYSTKIE TESTY ZALICZONE ✓")
+    print("WSZYSTKIE TESTY ZALICZONE")
     return 0
 
 
