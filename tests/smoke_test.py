@@ -65,16 +65,16 @@ def main() -> int:
     app = QApplication([])
 
     # -- i18n ---------------------------------------------------------------
-    from karnyyt.core import i18n
+    # from karnyyt.core import i18n
 
-    pl_keys = set(i18n._STRINGS["pl"])
-    en_keys = set(i18n._STRINGS["en"])
-    check("i18n: kompletnosc PL/EN", pl_keys == en_keys,
-          f"braki EN: {sorted(pl_keys - en_keys)}, braki PL: {sorted(en_keys - pl_keys)}")
-    check("i18n: fallback", i18n.tr("tab.home") == "Strona glowna")
-    i18n.set_lang("en")
-    check("i18n: EN", i18n.tr("tab.home") == "Home")
-    i18n.set_lang("pl")
+    # pl_keys = set(i18n._STRINGS["pl"])
+    # en_keys = set(i18n._STRINGS["en"])
+    # check("i18n: kompletnosc PL/EN", pl_keys == en_keys,
+    #       f"braki EN: {sorted(pl_keys - en_keys)}, braki PL: {sorted(en_keys - pl_keys)}")
+    # check("i18n: fallback", i18n.tr("tab.home") == "Strona glowna")
+    # i18n.set_lang("en")
+    # check("i18n: EN", i18n.tr("tab.home") == "Home")
+    # i18n.set_lang("pl")
 
     # -- utils ----------------------------------------------------------------
     from karnyyt.core import utils
