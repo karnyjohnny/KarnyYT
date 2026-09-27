@@ -1,0 +1,62 @@
+name: Build Windows
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    # windows-2022 = ostatni obraz runnera z obsługą Pythona 3.8
+    # (windows-2025 wymaga 3.9+). Celujemy w Windows 7 SP1 x64.
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.8.20 (identyczny jak środowisko docelowe)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.8.20"
+          cache: "pip"
+
+      - name: Zależności
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-build.txt
+
+      - name: Smoke testy (headless)
+        run: |
+          $env:QT_QPA_PLATFORM = "offscreen"
+          python tests/smoke_test.py
+
+      - name: PyInstaller (onedir + onefile)
+        run: pyinstaller --noconfirm --clean KarnyYT.spec
+
+      - name: Pakowanie
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist\KarnyYT -DestinationPath dist\KarnyYT_win64_onedir.zip
+          Copy-Item dist\KarnyYT-onefile.exe dist\KarnyYT_win64_onefile.exe
+          Get-ChildItem dist | Format-Table Name, Length
+
+      - name: Artefakty (zawsze, także dla workflow_dispatch)
+        uses: actions/upload-artifact@v4
+        with:
+          name: KarnyYT-windows-x64
+          path: |
+            dist/KarnyYT_win64_onedir.zip
+            dist/KarnyYT_win64_onefile.exe
+
+      - name: GitHub Release (tylko tagi v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/KarnyYT_win64_onedir.zip
+            dist/KarnyYT_win64_onefile.exe
+          generate_release_notes: true

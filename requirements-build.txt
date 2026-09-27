@@ -1,0 +1,5 @@
+# Zależności TYLKO do budowy binarek (CI / lokalny PyInstaller).
+# 5.13.2 = ostatnia wersja z serii 5.x, sprawdzona w buildach pod Windows 7
+# z Pythonem 3.8 (nowe PyInstaller oficjalnie celuje w Windows 8+).
+pyinstaller==5.13.2
+

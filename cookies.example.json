@@ -1,0 +1,15 @@
+[
+    {
+        "name": "SAPISID",
+        "value": "WKLEJ_TUTAJ_WARTOSC_SAPISID",
+        "domain": ".youtube.com",
+        "path": "/"
+    },
+    {
+        "name": "__Secure-3PAPISID",
+        "value": "WKLEJ_TUTAJ_WARTOSC_3PAPISID",
+        "domain": ".youtube.com",
+        "path": "/",
+        "secure": true
+    }
+]

@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Build / PyInstaller
+build/
+dist/
+*.manifest
+
+# Dane aplikacji (NIGDY nie commituj swoich cookies!)
+cookies.json
+data/
+portable.txt
+feed_cache.json
+watched.json
+settings.json
+karnyyt.log*
+tests/_cookies_live.json
+
+# IDE / OS
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
+.DS_Store

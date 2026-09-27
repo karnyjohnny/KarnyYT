@@ -1,0 +1,17 @@
+# Zależności runtime - wersje ZAPIĘTE pod środowisko docelowe
+# (Windows 7 SP1 x64 / Python 3.8.20 / Dell Latitude E5500).
+# Nie podnoś bez testów na maszynie docelowej!
+PyQt5==5.15.11
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.15.0
+httpx==0.28.1
+
+# zależności przechodnie httpx (zapięte dla pełnej powtarzalności builda)
+anyio==4.5.2
+certifi==2026.7.22
+exceptiongroup==1.3.1
+h11==0.16.0
+httpcore==1.0.9
+idna==3.15
+sniffio==1.3.1
+typing_extensions==4.13.2

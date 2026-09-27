@@ -1,0 +1,218 @@
+"""
+i18n.py - minimalistyczne tłumaczenia PL/EN.
+
+Zero zależności (bez Qt Linguist/.qm) - słownik + tr(). Każda klasa UI ma
+metodę retranslate(), która odświeża teksty po zmianie języka w locie.
+"""
+
+from __future__ import annotations
+
+from typing import Dict
+
+_LANG = "pl"
+
+_STRINGS: Dict[str, Dict[str, str]] = {
+    "pl": {
+        "app.window_title": "KarnyYT — lekki YouTube na mpv",
+        "tab.home": "Strona główna",
+        "tab.subs": "Subskrypcje",
+        "tab.settings": "Ustawienia",
+        "btn.refresh": "Odśwież",
+        "btn.more": "Wczytaj więcej…",
+        "btn.more_loading": "Wczytywanie…",
+        "btn.stop": "Zatrzymaj",
+        "btn.audio": "♪ Audio",
+        "btn.video": "▶ Wideo",
+        "url.placeholder": "Wklej URL YouTube (albo samo ID) i odpal w mpv…",
+        "filter.placeholder": "Filtruj tytuły i kanały… (Ctrl+F)",
+        "tooltip.refresh": "Odśwież oba feedy (F5)",
+        "tooltip.play_video": "Odtwórz wideo w mpv",
+        "tooltip.play_audio": "Odtwórz samo audio w mpv (z oknem)",
+        "status.fetching": "Pobieranie feedu…",
+        "status.updated": "Ost. odświeżenie: {time}",
+        "status.cached": " (z pamięci)",
+        "status.counts": "HOME {home} • SUBS {subs}",
+        "status.playing": "▶ {title}",
+        "status.tools_ok": "Narzędzia: OK",
+        "status.tools_missing": "Brak w PATH: {tools} — odtwarzanie nie zadziała (zobacz Ustawienia)",
+        "banner.session_invalid": "Cookies wygasły lub YouTube odrzucił sesję. Zaktualizuj cookies.json i odśwież.",
+        "banner.cookies_load": "Nie można wczytać cookies.json (brak pliku, zły JSON albo brak SAPISID). Wklej eksport z Cookie-Editora i zapisz.",
+        "banner.network": "Błąd sieci podczas pobierania feedu. Sprawdź połączenie i spróbuj ponownie.",
+        "banner.unexpected": "YouTube zmienił strukturę odpowiedzi. Spróbuj override CLIENT_VERSION w Ustawienia → Zaawansowane albo zaktualizuj KarnyYT.",
+        "banner.json_decode": "YouTube zwrócił niepoprawny JSON. Spróbuj ponownie za chwilę.",
+        "banner.generic": "Wystąpił błąd: {msg}",
+        "banner.tools_missing": "Nie znaleziono narzędzi: {tools}. Bez mpv nie odtworzysz filmów — doinstaluj je i dodaj do PATH (albo wskaż ścieżki w Ustawieniach).",
+        "banner.ytdlp_old": "yt-dlp ma {days} dni — YouTube często odrzuca stare wersje. Jeśli filmy nie startują, zaktualizuj yt-dlp.",
+        "btn.update_cookies": "Aktualizuj cookies.json",
+        "btn.retry": "Spróbuj ponownie",
+        "empty.feed": "Feed jest pusty. Odśwież (F5) albo zaktualizuj cookies.",
+        "empty.filter": "Brak filmów pasujących do filtra.",
+        "empty.loading": "Pobieranie feedu…",
+        "ctx.play_video": "Odtwórz wideo (mpv)",
+        "ctx.play_audio": "Odtwórz audio (mpv)",
+        "ctx.copy_url": "Kopiuj URL",
+        "ctx.copy_title": "Kopiuj tytuł",
+        "ctx.open_browser": "Otwórz w przeglądarce",
+        "ctx.unwatched": "Oznacz jako nieobejrzane",
+        "set.playback": "Odtwarzanie (mpv)",
+        "set.resolution": "Maksymalna rozdzielczość wideo",
+        "set.prefer_h264": "Preferuj H.264 + AAC (zalecane dla starych CPU)",
+        "set.prefer_h264_hint": "Core 2 Duo / stare GPU nie dekodują VP9/AV1 programowo bez czkawki. H.264 ma dekodowanie sprzętowe (DXVA2) i lekki AAC zamiast Opus.",
+        "set.extra_args": "Dodatkowe argumenty mpv",
+        "set.extra_args_hint": "Doklejane do każdego uruchomienia mpv. Domyślnie: bufor 64 MiB (oszczędność RAM).",
+        "set.paths": "Ścieżki narzędzi (puste = szukaj w PATH)",
+        "set.mpv_path": "mpv",
+        "set.ytdlp_path": "yt-dlp",
+        "set.ffmpeg_path": "FFmpeg",
+        "set.browse": "Przeglądaj…",
+        "set.appearance": "Wygląd",
+        "set.card_size": "Rozmiar kafelków",
+        "set.language": "Język",
+        "set.auto_refresh": "Auto-odświeżanie (minuty, 0 = wyłączone)",
+        "set.data": "Dane i cookies",
+        "set.update_cookies": "Aktualizuj cookies.json (otwiera Notatnik)",
+        "set.update_cookies_hint": "Eksport JSON z rozszerzenia Cookie-Editor (Chrome/Firefox) → wklej do pliku → zapisz. Wymagane ciastko: SAPISID lub __Secure-3PAPISID.",
+        "set.open_data": "Otwórz folder danych",
+        "set.open_cache": "Otwórz folder cache miniatur",
+        "set.clear_watched": "Wyczyść historię obejrzanych ({n})",
+        "set.clear_watched_confirm": "Na pewno wyczyścić historię {n} obejrzanych filmów?",
+        "set.advanced": "Zaawansowane",
+        "set.client_version": "Override CLIENT_VERSION (puste = domyślny: {cv})",
+        "set.client_version_hint": "Gdy feed nagle zwraca „YouTube zmienił strukturę odpowiedzi”, a cookies są dobre — wpisz INNERTUBE_CONTEXT_CLIENT_VERSION ze źródła youtube.com.",
+        "set.tools": "Stan narzędzi",
+        "set.recheck": "Sprawdź ponownie",
+        "set.about": "O programie",
+        "set.about_text": "KarnyYT {version} — lekki klient YouTube na mpv/yt-dlp.\nPobiera feed (HOME + subskrypcje) prywatnym endpointem YouTube i odpala filmy bezpośrednio w mpv — bez przeglądarki, bez 1 GB RAM.\n\nModuł feedu: yt_feed_py38 (koncept: KarnyJohnny). GUI: PyQt5.\nmpv, yt-dlp i FFmpeg NIE są dołączane — muszą być zainstalowane w systemie.\nLicencja: MIT.",
+        "card.small": "Małe",
+        "card.medium": "Średnie",
+        "card.large": "Duże",
+        "res.best": "Najlepsza",
+        "tool.found": "✓ {path}",
+        "tool.missing": "✗ brak",
+        "tool.checking": "… sprawdzam",
+        "dlg.yes": "Tak",
+        "dlg.no": "Nie",
+        "dlg.error_title": "KarnyYT — błąd",
+        "err.no_mpv": "Nie znaleziono mpv (PATH ani ścieżka w ustawieniach). Zainstaluj mpv albo wskaż mpv.exe w Ustawieniach.",
+        "err.launch_failed": "Nie udało się uruchomić mpv: {msg}",
+        "err.empty_url": "Pole URL jest puste.",
+        "badge.watched": "Obejrzane",
+        "badge.live": "NA ŻYWO",
+        "meta.views_pub": "{views} • {pub}",
+        "filter.file_dialog_title": "Wybierz plik wykonywalny",
+    },
+    "en": {
+        "app.window_title": "KarnyYT — lightweight YouTube via mpv",
+        "tab.home": "Home",
+        "tab.subs": "Subscriptions",
+        "tab.settings": "Settings",
+        "btn.refresh": "Refresh",
+        "btn.more": "Load more…",
+        "btn.more_loading": "Loading…",
+        "btn.stop": "Stop",
+        "btn.audio": "♪ Audio",
+        "btn.video": "▶ Video",
+        "url.placeholder": "Paste a YouTube URL (or bare ID) and play via mpv…",
+        "filter.placeholder": "Filter titles and channels… (Ctrl+F)",
+        "tooltip.refresh": "Refresh both feeds (F5)",
+        "tooltip.play_video": "Play video in mpv",
+        "tooltip.play_audio": "Play audio only in mpv (with window)",
+        "status.fetching": "Fetching feed…",
+        "status.updated": "Last refresh: {time}",
+        "status.cached": " (cached)",
+        "status.counts": "HOME {home} • SUBS {subs}",
+        "status.playing": "▶ {title}",
+        "status.tools_ok": "Tools: OK",
+        "status.tools_missing": "Missing from PATH: {tools} — playback will not work (see Settings)",
+        "banner.session_invalid": "Cookies expired or YouTube rejected the session. Update cookies.json and refresh.",
+        "banner.cookies_load": "Cannot load cookies.json (missing file, bad JSON or no SAPISID). Paste a Cookie-Editor export and save.",
+        "banner.network": "Network error while fetching the feed. Check your connection and retry.",
+        "banner.unexpected": "YouTube changed the response structure. Try the CLIENT_VERSION override in Settings → Advanced, or update KarnyYT.",
+        "banner.json_decode": "YouTube returned invalid JSON. Try again in a moment.",
+        "banner.generic": "Error occurred: {msg}",
+        "banner.tools_missing": "Tools not found: {tools}. Without mpv there is no playback — install them and add to PATH (or set paths in Settings).",
+        "banner.ytdlp_old": "yt-dlp is {days} days old — YouTube often rejects old versions. If videos won't start, update yt-dlp.",
+        "btn.update_cookies": "Update cookies.json",
+        "btn.retry": "Retry",
+        "empty.feed": "Feed is empty. Refresh (F5) or update cookies.",
+        "empty.filter": "No videos match this filter.",
+        "empty.loading": "Fetching feed…",
+        "ctx.play_video": "Play video (mpv)",
+        "ctx.play_audio": "Play audio (mpv)",
+        "ctx.copy_url": "Copy URL",
+        "ctx.copy_title": "Copy title",
+        "ctx.open_browser": "Open in browser",
+        "ctx.unwatched": "Mark as unwatched",
+        "set.playback": "Playback (mpv)",
+        "set.resolution": "Maximum video resolution",
+        "set.prefer_h264": "Prefer H.264 + AAC (recommended for old CPUs)",
+        "set.prefer_h264_hint": "Core 2 Duo / old GPUs choke on software VP9/AV1. H.264 gets hardware decoding (DXVA2) and lightweight AAC instead of Opus.",
+        "set.extra_args": "Extra mpv arguments",
+        "set.extra_args_hint": "Appended to every mpv launch. Default: 64 MiB demuxer buffer (RAM saver).",
+        "set.paths": "Tool paths (empty = search PATH)",
+        "set.mpv_path": "mpv",
+        "set.ytdlp_path": "yt-dlp",
+        "set.ffmpeg_path": "FFmpeg",
+        "set.browse": "Browse…",
+        "set.appearance": "Appearance",
+        "set.card_size": "Card size",
+        "set.language": "Language",
+        "set.auto_refresh": "Auto-refresh (minutes, 0 = off)",
+        "set.data": "Data & cookies",
+        "set.update_cookies": "Update cookies.json (opens Notepad)",
+        "set.update_cookies_hint": "Cookie-Editor JSON export (Chrome/Firefox) → paste into the file → save. Required cookie: SAPISID or __Secure-3PAPISID.",
+        "set.open_data": "Open data folder",
+        "set.open_cache": "Open thumbnail cache folder",
+        "set.clear_watched": "Clear watch history ({n})",
+        "set.clear_watched_confirm": "Clear history of {n} watched videos?",
+        "set.advanced": "Advanced",
+        "set.client_version": "CLIENT_VERSION override (empty = default: {cv})",
+        "set.client_version_hint": "If the feed suddenly says “YouTube changed the response structure” while cookies are fine — paste INNERTUBE_CONTEXT_CLIENT_VERSION from youtube.com page source.",
+        "set.tools": "Tool status",
+        "set.recheck": "Re-check",
+        "set.about": "About",
+        "set.about_text": "KarnyYT {version} — lightweight YouTube client on mpv/yt-dlp.\nFetches feeds (HOME + subscriptions) via a private YouTube endpoint and plays videos directly in mpv — no browser, no 1 GB of RAM.\n\nFeed module: yt_feed_py38 (concept: KarnyJohnny). GUI: PyQt5.\nmpv, yt-dlp and FFmpeg are NOT bundled — they must be installed on the system.\nLicense: MIT.",
+        "card.small": "Small",
+        "card.medium": "Medium",
+        "card.large": "Large",
+        "res.best": "Best",
+        "tool.found": "✓ {path}",
+        "tool.missing": "✗ missing",
+        "tool.checking": "… checking",
+        "dlg.yes": "Yes",
+        "dlg.no": "No",
+        "dlg.error_title": "KarnyYT — error",
+        "err.no_mpv": "mpv not found (neither PATH nor settings path). Install mpv or point to mpv.exe in Settings.",
+        "err.launch_failed": "Failed to launch mpv: {msg}",
+        "err.empty_url": "URL field is empty.",
+        "badge.watched": "Watched",
+        "badge.live": "LIVE",
+        "meta.views_pub": "{views} • {pub}",
+        "filter.file_dialog_title": "Select executable",
+    },
+}
+
+
+def set_lang(lang: str) -> None:
+    global _LANG
+    _LANG = lang if lang in _STRINGS else "pl"
+
+
+def lang() -> str:
+    return _LANG
+
+
+def tr(key: str, **fmt: object) -> str:
+    """Zwraca tłumaczenie; fallback: PL → sam klucz (nigdy crash)."""
+    table = _STRINGS.get(_LANG, {})
+    text = table.get(key) or _STRINGS["pl"].get(key) or key
+    if fmt:
+        try:
+            return text.format(**fmt)
+        except (KeyError, IndexError, ValueError):
+            return text
+    return text
+
+
+def keys() -> "list":
+    return sorted(_STRINGS["pl"].keys())
