@@ -4,7 +4,7 @@ smoke_test.py - headlessowe testy dymne (QT_QPA_PLATFORM=offscreen).
 Uruchamiane lokalnie i w CI PRZED pakowaniem binarek. Nie dotykają sieci
 ani prawdziwych cookies - wszystko na syntetycznych danych.
 
-    python tests/smoke_test.py 
+    python tests/smoke_test.py   
 """
 
 from __future__ import annotations
