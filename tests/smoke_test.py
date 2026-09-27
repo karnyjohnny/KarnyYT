@@ -97,7 +97,7 @@ def main() -> int:
 
     fmt = build_ytdl_format(360, True, "video")
     check("player: format 360+h264", "height<=?360" in fmt and "vcodec^=avc1" in fmt and "mp4a" in fmt, fmt)
-    check("player: fallback lańcuch", fmt.count("/") >= 3, fmt)
+    check("player: fallback lancuch", fmt.count("/") >= 3, fmt)
     fmt_best = build_ytdl_format("best", True, "video")
     check("player: best bez limitu", "height" not in fmt_best, fmt_best)
     fmt_audio = build_ytdl_format(360, True, "audio")
