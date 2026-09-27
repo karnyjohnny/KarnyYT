@@ -1,10 +1,10 @@
 """
 smoke_test.py - headlessowe testy dymne (QT_QPA_PLATFORM=offscreen).
 
-Uruchamiane lokalnie i w CI PRZED pakowaniem binarek. Nie dotykają sieci
+Uruchamiane lokalnie i w CI PRZED pakowaniem binarek. Nie dotykaja sieci
 ani prawdziwych cookies - wszystko na syntetycznych danych.
 
-    python tests/smoke_test.py   
+    python tests/smoke_test.py  
 """
 
 from __future__ import annotations
@@ -43,12 +43,12 @@ def make_items(n: int):
         VideoItem(
             video_id=f"vid{i:08d}x",
             title=(
-                f"Test video {i} — tytuł na tyle długi, żeby zawinął się "
-                f"do drugiej linii i przyciął poprawnie…"
+                f"Test video {i} — tytul na tyle dlugi, zeby zawinal sie "
+                f"do drugiej linii i przycial poprawnie…"
             ),
             url=f"https://www.youtube.com/watch?v=vid{i:08d}x",
             thumbnail_url=f"https://i.ytimg.com/vi/vid{i:08d}x/mqdefault.jpg",
-            author=f"Kanał Testowy {i}",
+            author=f"Kanal Testowy {i}",
             duration="12:34" if i % 5 else None,
             views=f"{i}.2K views",
             published_time=f"{i % 23 + 1} hours ago",
@@ -69,9 +69,9 @@ def main() -> int:
 
     pl_keys = set(i18n._STRINGS["pl"])
     en_keys = set(i18n._STRINGS["en"])
-    check("i18n: kompletność PL/EN", pl_keys == en_keys,
+    check("i18n: kompletnosc PL/EN", pl_keys == en_keys,
           f"braki EN: {sorted(pl_keys - en_keys)}, braki PL: {sorted(en_keys - pl_keys)}")
-    check("i18n: fallback", i18n.tr("tab.home") == "Strona główna")
+    check("i18n: fallback", i18n.tr("tab.home") == "Strona glowna")
     i18n.set_lang("en")
     check("i18n: EN", i18n.tr("tab.home") == "Home")
     i18n.set_lang("pl")
@@ -85,8 +85,8 @@ def main() -> int:
           utils.extract_video_id("https://youtu.be/dQw4w9WgXcQ") == "dQw4w9WgXcQ")
     check("utils: id z /live/",
           utils.extract_video_id("https://www.youtube.com/live/dQw4w9WgXcQ") == "dQw4w9WgXcQ")
-    check("utils: gołe id", utils.extract_video_id("dQw4w9WgXcQ") == "dQw4w9WgXcQ")
-    check("utils: śmieci", utils.extract_video_id("https://example.com/x") is None)
+    check("utils: gole id", utils.extract_video_id("dQw4w9WgXcQ") == "dQw4w9WgXcQ")
+    check("utils: smieci", utils.extract_video_id("https://example.com/x") is None)
     check("utils: normalize", utils.normalize_play_url("dQw4w9WgXcQ") == "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     check("utils: localize_meta", utils.localize_meta("4 hours ago", "pl") == "4 godzin temu")
     check("utils: parse_extra_args",
@@ -97,7 +97,7 @@ def main() -> int:
 
     fmt = build_ytdl_format(360, True, "video")
     check("player: format 360+h264", "height<=?360" in fmt and "vcodec^=avc1" in fmt and "mp4a" in fmt, fmt)
-    check("player: fallback łańcuch", fmt.count("/") >= 3, fmt)
+    check("player: fallback lańcuch", fmt.count("/") >= 3, fmt)
     fmt_best = build_ytdl_format("best", True, "video")
     check("player: best bez limitu", "height" not in fmt_best, fmt_best)
     fmt_audio = build_ytdl_format(360, True, "audio")
@@ -128,7 +128,7 @@ def main() -> int:
     model = VideoListModel()
     model.set_videos(items)
     check("model: rowCount", model.rowCount() == 120)
-    model.set_filter("Kanał Testowy 7")
+    model.set_filter("Kanal Testowy 7")
     check("model: filtr", 0 < model.rowCount() < 120)
     model.set_filter("")
     added = model.append_videos(items[:5] + make_items(1)[0:0])
@@ -142,7 +142,7 @@ def main() -> int:
     check("model: watched", bool(model.data(idx, R_WATCHED)))
     check("model: video role", model.data(idx, R_VIDEO).title.startswith("Test video 0"))
 
-    # -- okno główne (pełny wiring) -----------------------------------------------------
+    # -- okno glowne (pelny wiring) -----------------------------------------------------
     from karnyyt.ui.main_window import MainWindow
 
     win = MainWindow(Settings(), WatchedStore())
@@ -153,9 +153,9 @@ def main() -> int:
     win.page_subs.set_feed(make_items(30), None, time.time(), False)
     app.processEvents()
     check("window: feed w modelu", win.page_home.model.rowCount() == 120)
-    check("window: przycisk więcej widoczny", win.page_home.more_btn.isVisibleTo(win.page_home))
+    check("window: przycisk wiecej widoczny", win.page_home.more_btn.isVisibleTo(win.page_home))
 
-    # delegate: wymaluj viewport do obrazka (łapie crashe w paint)
+    # delegate: wymaluj viewport do obrazka (lapie crashe w paint)
     vp = win.page_home.view.viewport()
     size = vp.size()
     if size.width() < 10 or size.height() < 10:
@@ -171,7 +171,7 @@ def main() -> int:
     check("delegate: przyciski w miniaturze",
           QRect(0, 0, 300, 169).contains(vrect) and QRect(0, 0, 300, 169).contains(arect))
 
-    # filtr z paska narzędzi
+    # filtr z paska narzedzi
     win.edit_filter.setText("Test video 42")
     app.processEvents()
     check("window: filtr globalny", win.page_home.model.rowCount() == 1)
@@ -182,7 +182,7 @@ def main() -> int:
     i18n.set_lang("en")
     win.retranslate()
     app.processEvents()
-    check("retranslate: EN tytuł okna", "lightweight" in win.windowTitle().lower())
+    check("retranslate: EN tytul okna", "lightweight" in win.windowTitle().lower())
     i18n.set_lang("pl")
     win.retranslate()
     app.processEvents()
