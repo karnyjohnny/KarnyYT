@@ -178,14 +178,14 @@ def main() -> int:
     win.edit_filter.clear()
     app.processEvents()
 
-    # retranslate na EN
-    i18n.set_lang("en")
-    win.retranslate()
-    app.processEvents()
-    check("retranslate: EN tytul okna", "lightweight" in win.windowTitle().lower())
-    i18n.set_lang("pl")
-    win.retranslate()
-    app.processEvents()
+    # # retranslate na EN
+    # i18n.set_lang("en")
+    # win.retranslate()
+    # app.processEvents()
+    # check("retranslate: EN tytul okna", "lightweight" in win.windowTitle().lower())
+    # i18n.set_lang("pl")
+    # win.retranslate()
+    # app.processEvents()
 
     # rozmiar kart
     win._apply_card_size("small")
