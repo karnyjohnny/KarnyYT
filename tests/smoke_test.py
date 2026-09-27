@@ -67,7 +67,7 @@ def main() -> int:
     # -- i18n ---------------------------------------------------------------
     # from karnyyt.core import i18n
 
-    # pl_keys = set(i18n._STRINGS["pl"])
+    # pl_keys = set(i18n._STRINGS["pl"])  
     # en_keys = set(i18n._STRINGS["en"])
     # check("i18n: kompletnosc PL/EN", pl_keys == en_keys,
     #       f"braki EN: {sorted(pl_keys - en_keys)}, braki PL: {sorted(en_keys - pl_keys)}")
