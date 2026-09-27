@@ -18,10 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Python 3.8.20 (identyczny jak środowisko docelowe)
+      - name: Python 3.8.10 (identyczny jak środowisko docelowe)
         uses: actions/setup-python@v5
         with:
-          python-version: "3.8.20"
+          python-version: "3.8.10"
           cache: "pip"
 
       - name: Zależności
